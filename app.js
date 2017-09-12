@@ -54,17 +54,9 @@ module.exports.application = function(size, seed) {
         const aliveNeighbors = above.concat(below, immediate).filter(neighbor => neighbor === 1).length;
 
         if(cellIsAlive){
-          if(aliveNeighbors >= 2 && aliveNeighbors <= 3){
-            return 1;
-          } else {
-            return 0;
-          }
+          return aliveNeighbors >= 2 && aliveNeighbors <= 3 ? 1 : 0;
         } else {
-          if(aliveNeighbors === 3){
-            return 1;
-          } else {
-            return 0;
-          }
+          return aliveNeighbors === 3 ? 1 : 0;
         }
       });
     });
