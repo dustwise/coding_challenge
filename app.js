@@ -2,8 +2,8 @@
 const MIN_GRID_SIZE = 5;
 const MAX_GRID_SIZE = 250;
 
-module.exports = function higherOrderFunction(args) {
-  //check provided argument validity
+module.exports.higherOrderFunction = function(args) {
+  //CHECK ARG VALIDITY
   if(!args){
     return "Please, at a minimum, provide a grid size.";
   }
@@ -16,19 +16,30 @@ module.exports = function higherOrderFunction(args) {
     return "Currently this app only supports grid sizes from 5 to 250.";
   }
 
-//generate arrays based on size of grid provided
-const gridSize = args[0];
-const grid = Array(gridSize).fill([]);
+  //GENERATE GRID BASED ON SIZE
+  const gridSize = args;
+  const grid = generateGrid(gridSize);
 
-//populate arrays with seed or randomized data
-const generateSeed = function(grid){
-  for(row of grid){
-    row(gridSize).fill(Math.floor(Math.random()));
+  generateGrid(grid);
+
+  function generateGrid(size){
+    const newGrid = [];
+
+    for(let i = 0; i < size; i++){
+      newGrid.push([]);
+    }
+
+    newGrid.forEach(row => {
+      for(let i = 0; i < size; i++){
+        row.push(Math.round(Math.random()));
+      }
+    });
+
+    return newGrid;
   }
-};
 
-console.log(grid);
-//run life cycle
+  console.log(grid)
+  //run life cycle
 
-//update screen
+  //update screen
 }
