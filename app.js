@@ -16,7 +16,7 @@ module.exports.higherOrderFunction = function(args) {
     return "Currently this app only supports grid sizes from 5 to 250.";
   }
 
-  //GENERATE GRID BASED ON SIZE
+  //GENERATE INITIAL GRID BASED ON PROVIDED SIZE
   const gridSize = args;
   const grid = generateGrid(gridSize);
 
@@ -26,14 +26,14 @@ module.exports.higherOrderFunction = function(args) {
     const newGrid = [];
 
     for(let i = 0; i < size; i++){
-      newGrid.push([]);
-    }
-
-    newGrid.forEach(row => {
-      for(let i = 0; i < size; i++){
-        row.push(Math.round(Math.random()));
+      const newRow = [];
+      
+      for(let j = 0; j < size; j++){
+        newRow.push(Math.round(Math.random()));
       }
-    });
+
+      newGrid.push(newRow);
+    }
 
     return newGrid;
   }
